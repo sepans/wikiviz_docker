@@ -1,0 +1,11 @@
+cherrypy
+cherrypy-cors
+numpy
+scipy
+Cython
+Bottleneck
+annoy
+#flann==1.8.4
+ipython
+scikit-learn
+gensim
