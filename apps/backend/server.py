@@ -1,20 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2014 Radim Rehurek <me@radimrehurek.com>
 
-"""
-USAGE: %(program)s CONFIG
-
-    Start the wiki-sim server for http://radimrehurek.com/2014/01/performance-shootout-of-nearest-neighbours-querying/#wikisim
-and leave it running (ctrl+c to quit).
-
-Ports/interfaces for the server are specified in the config file.
-
-Example:
-    ./runserver.py hetzner.conf
-
-"""
 
 from __future__ import with_statement
 
@@ -80,26 +67,16 @@ class Server(object):
     def __init__(self, basedir, k):
         self.basedir = basedir
         self.k = k
-        #logger.info('loading index %s' %os.path.join(basedir, 'index4278026_annoy_100'))
         self.index_annoy = annoy.AnnoyIndex(500, metric='angular')
         self.index_annoy.load(os.path.join(basedir, 'index4278026_annoy_100'))
 
-        # conn = sqlite3.connect('annoy.db')
-        # self.c = conn.cursor()
 
-        #self.id2title = gensim.utils.unpickle(os.path.join(basedir, 'id2title'))
         #logger.info('number of articles in index %s' %len(self.id2title))
         logger.info("loading wikiids")
         wikiidlist = gensim.utils.unpickle(os.path.join(basedir, 'wikiidlist'))
-        #self.wikiids = wikiid2title.keys()
-        #self.wikiIdToIndexId = collections.OrderedDict((int(wikiid), pos) for pos, wikiid in enumerate(self.wikiids))
+        
         wikiIdToIndexId = collections.OrderedDict((int(wikiid), pos) for pos, wikiid in enumerate(wikiidlist))
-        #print(wikiid2title['12'])
-        #logger.info("first 5 titles in id2title %s " % self.id2title[0:20])
-        #logger.info("first 5 wiki ids to index ids %s" % self.wikiIdToIndexId.items()[0:20])
-        #logger.info("first 5 wiki ids %s" % self.wikiidlist[0:20])
-        #logger.info("first 5 wiki values %s" % wikiid2title.values()[0:20])
-        #self.title2id = dict((gensim.utils.to_unicode(title).lower(), pos) for pos, title in enumerate(self.id2title))
+        
         with open(os.path.dirname(os.path.abspath(__file__)) + '/rasteredxx.json') as withidsfile:
             self.withids = json.load(withidsfile)
             for i in range(0, 10):
