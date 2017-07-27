@@ -1,2 +1,3 @@
 apps/backend/index*
+apps/backend/data
 *.log

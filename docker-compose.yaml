@@ -12,6 +12,7 @@ services:
             - ./apps/frontend/src:/usr/src/app/src
             - ./apps/frontend/build:/usr/src/app/build
         command: npm run build
+
     wikiviz_nginx:
         image: nginx:1-alpine
         volumes:
