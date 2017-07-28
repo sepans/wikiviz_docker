@@ -1,3 +1,5 @@
 apps/backend/index*
 apps/backend/data
 *.log
+
+.DS_Store
