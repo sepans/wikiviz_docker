@@ -68,12 +68,12 @@ class Server(object):
         self.basedir = basedir
         self.k = k
         self.index_annoy = annoy.AnnoyIndex(500, metric='angular')
-        self.index_annoy.load(os.path.join(basedir, 'data/index4278026_annoy_100'))
+        self.index_annoy.load(os.path.join(basedir, 'index4278026_annoy_100'))
 
 
         #logger.info('number of articles in index %s' %len(self.id2title))
         logger.info("loading wikiids")
-        wikiidlist = gensim.utils.unpickle(os.path.join(basedir, 'data/wikiidlist'))
+        wikiidlist = gensim.utils.unpickle(os.path.join(basedir, 'wikiidlist'))
         
         wikiIdToIndexId = collections.OrderedDict((int(wikiid), pos) for pos, wikiid in enumerate(wikiidlist))
         
@@ -142,7 +142,7 @@ class Server(object):
         useRastered = kwargs.pop('rastered', u'')
         logger.info("finding similars for %s" % title)
 
-        conn = sqlite3.connect('data/annoy.db')
+        conn = sqlite3.connect(os.path.join(self.basedir, 'annoy.db'))
         c = conn.cursor()
 
         c.execute('SELECT annoy_id FROM annoy_map WHERE title = ?', (title,))

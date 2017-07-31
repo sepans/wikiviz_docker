@@ -1,4 +1,4 @@
 #!/bin/bash
 
-aws s3 sync s3://anarchywiki/sim-shootout/ ./data/
+aws s3 sync --follow-symlinks s3://anarchywiki/sim-shootout/ /data/
 python server.py server.conf  
