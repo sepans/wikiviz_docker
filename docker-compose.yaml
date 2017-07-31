@@ -5,6 +5,8 @@ services:
         build: apps/backend/
         volumes:
             - ./apps/backend/:/usr/src/app
+        env_file:
+            - ./apps/backend/env-secret
         
     wikiviz_frontend:
         build: apps/frontend/

@@ -9,4 +9,4 @@ annoy
 ipython
 scikit-learn
 gensim
-aws
+awscli
