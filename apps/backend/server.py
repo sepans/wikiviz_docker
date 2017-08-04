@@ -112,7 +112,7 @@ class Server(object):
         print(query)
         print(intersection)
         intersection = intersection[:3]
-        c.execute('SELECT wikiid FROM annoy_map WHERE annoy_id in (%s)' % ','.join('?'*len(intersection)), intersection)
+        c.execute('SELECT wiki_id FROM annoy_map WHERE annoy_id in (%s)' % ','.join('?'*len(intersection)), intersection)
         qresults = c.fetchall()
         result = [titleTuple[0] for titleTuple in qresults]  # convert top10 from ids back to article names
 
