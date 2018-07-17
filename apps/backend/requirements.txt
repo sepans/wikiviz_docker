@@ -1,4 +1,4 @@
-cherrypy
+cherrypy==11.0.0
 cherrypy-cors
 numpy
 scipy
@@ -8,5 +8,5 @@ annoy
 #flann==1.8.4
 ipython
 scikit-learn
-gensim
+gensim==2.3.0
 awscli
